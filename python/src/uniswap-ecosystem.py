@@ -195,32 +195,20 @@ class GeneralSwapV2:
         result = self.web3.eth.send_raw_transaction(transaction=signed_tx.rawTransaction)
         return result.hex()    
 
-
-class EthereumSwap(GeneralSwapV2):
-    provider_url = ''
-    router_address = ''
-
-
 class BinanceSmartChainSwap(GeneralSwapV2):
-    provider_url = ''
-    router_address = ''
+    provider_url = 'https://bscrpc.com'
+    router_address = '0x10ED43C718714eb63d5aA57B78B54704E256024E'
+    max_swap_gas = 200_000
+    max_approve_gas = 40_000
+    chain_id = 56
+
 
 class BinanceSmartChainTestnetSwap(GeneralSwapV2):
     provider_url = 'https://bsc-testnet.public.blastapi.io'
     router_address = '0x9Ac64Cc6e4415144C455BD8E4837Fea55603e5c3'
     max_swap_gas = 200_000
-    max_approve_gas = 200_000
+    max_approve_gas = 40_000
     chain_id = 97
-
-
-class FantomSwap(GeneralSwapV2):
-    provider_url = ''
-    router_address = ''
-
-
-class PolygonSwap(GeneralSwapV2):
-    provider_url = ''
-    router_address = ''
 
 
 class GeneralSwapV3:
@@ -312,5 +300,13 @@ class EthGoerliTestnetSwap(GeneralSwapV3):
     provider_url = 'https://eth-goerli.public.blastapi.io'
     router_address = '0xE592427A0AEce92De3Edee1F18E0157C05861564'
     max_swap_gas = 200_000
-    max_approve_gas = 20_000
+    max_approve_gas = 40_000
     chain_id = 5
+
+class PolygonSwap(GeneralSwapV2):
+    provider_url = 'https://polygon.llamarpc.com'
+    router_address = '0xE592427A0AEce92De3Edee1F18E0157C05861564'
+    max_swap_gas = 200_000
+    max_approve_gas = 40_000
+    chain_id = 137
+
