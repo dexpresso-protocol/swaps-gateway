@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "swaps-gateway"
-version = "0.1.0"
+version = "0.1.1"
 authors = [
   { name="dexpresso.protocol", email="dexpresso_dev@proton.me" },
 ]
@@ -33,3 +33,9 @@ dependencies = [
 [project.urls]
 "Homepage" = "https://github.com/dexpresso-protocol/swaps-gateway"
 "Bug Tracker" = "https://github.com/dexpresso-protocol/swaps-gateway/issues"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.package-data]
+swaps_gateway = ["*.txt"]

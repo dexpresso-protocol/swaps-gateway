@@ -17,7 +17,7 @@ class GeneralSwapV2:
         self.web3 = Web3(Web3.HTTPProvider(self.provider_url))
         self.owner_address = self.web3.eth.account.from_key(privkey).address
         self.private_key = privkey
-        router_abi = json.load(open("router_abi.txt", "r"))
+        router_abi = json.load(open("./src/swaps_gateway/router_abi.txt", "r"))
         self.router_contract = self.web3.eth.contract(address=self.router_address, abi=router_abi)
         self.weth = self.router_contract.functions.WETH().call()
         self._tokens_list = {
@@ -165,7 +165,7 @@ class GeneralSwapV2:
     
     def get_allowance_list(self):
         result = {}
-        erc20_abi = json.load(open("erc20_abi.txt", "r"))
+        erc20_abi = json.load(open("./src/swaps_gateway/erc20_abi.txt", "r"))
         for item in self._tokens_list:
             if item == self.base_token_symbol:
                 continue
@@ -177,7 +177,7 @@ class GeneralSwapV2:
         return result
     
     def approve_swap_contract(self, token, amount):
-        erc20_abi = json.load(open("erc20_abi.txt", "r"))
+        erc20_abi = json.load(open("./src/swaps_gateway/erc20_abi.txt", "r"))
         amount_units = self.to_unit(amount, token)
         contract = self.web3.eth.contract(address=self._tokens_list[token]["address"], abi=erc20_abi)
         nonce = self.web3.eth.getTransactionCount(self.owner_address)
